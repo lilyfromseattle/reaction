@@ -224,7 +224,7 @@ export const styles = {
   `,
 }
 
-const TabsOuterContainer = styled(Flex)`
+export const TabsOuterContainer = styled(Flex)`
   width: 100%;
   border-bottom: 1px solid ${color("black10")};
   position: relative;
