@@ -76,8 +76,8 @@ export class Tabs extends React.Component<TabsProps, TabsState> {
     if (this.props.onChange) {
       this.props.onChange({
         tabIndex: activeTabIndex,
-        name: this.props.children[activeTabIndex].props.name,
-        data: this.props.children[activeTabIndex].props.data,
+        name: (this.props.children[activeTabIndex] as TabLike).props.name,
+        data: (this.props.children[activeTabIndex] as TabLike).props.data,
       })
     }
   }
