@@ -45,7 +45,7 @@ export interface TabsProps extends WidthProps, JustifyContentProps {
   // to keep the active tab in view
   autoScroll?: boolean
 
-  children: TabLike[]
+  children: Array<TabLike | false>
 }
 
 export interface TabsState {
