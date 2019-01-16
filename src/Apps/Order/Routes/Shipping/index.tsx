@@ -30,6 +30,7 @@ import {
   offerFlowSteps,
   OrderStepper,
 } from "Apps/Order/Components/OrderStepper"
+import { StickyFooter } from "Apps/Order/Components/StickyFooter"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { TwoColumnLayout } from "Apps/Order/Components/TwoColumnLayout"
 import { Dialog, injectDialog } from "Apps/Order/Dialogs"
@@ -403,6 +404,7 @@ export class ShippingRoute extends Component<ShippingProps, ShippingState> {
             }
           />
         </HorizontalPadding>
+        <StickyFooter artworkId={artwork.id} />
       </>
     )
   }

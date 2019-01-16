@@ -22,6 +22,7 @@ import {
 import { AcceptOfferMutation } from "__generated__/AcceptOfferMutation.graphql"
 import { ConditionsOfSaleDisclaimer } from "Apps/Order/Components/ConditionsOfSaleDisclaimer"
 import { ShippingSummaryItemFragmentContainer as ShippingSummaryItem } from "Apps/Order/Components/ShippingSummaryItem"
+import { StickyFooter } from "Apps/Order/Components/StickyFooter"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { Dialog, injectDialog } from "Apps/Order/Dialogs"
 import { trackPageViewWrapper } from "Apps/Order/Utils/trackPageViewWrapper"
@@ -234,6 +235,8 @@ export class Accept extends Component<AcceptProps, AcceptState> {
             }
           />
         </HorizontalPadding>
+
+        <StickyFooter artworkId={artwork.id} />
       </>
     )
   }

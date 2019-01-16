@@ -13,6 +13,7 @@ import { RespondCounterOfferMutation } from "__generated__/RespondCounterOfferMu
 import { HorizontalPadding } from "Apps/Components/HorizontalPadding"
 import { Helper } from "Apps/Order/Components/Helper"
 import { OfferInput } from "Apps/Order/Components/OfferInput"
+import { StickyFooter } from "Apps/Order/Components/StickyFooter"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { TwoColumnLayout } from "Apps/Order/Components/TwoColumnLayout"
 import { Dialog, injectDialog } from "Apps/Order/Dialogs"
@@ -349,6 +350,7 @@ export class RespondRoute extends Component<RespondProps, RespondState> {
             }
           />
         </HorizontalPadding>
+        <StickyFooter artworkId={artwork.id} />
       </>
     )
   }

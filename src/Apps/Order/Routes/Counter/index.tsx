@@ -11,6 +11,7 @@ import {
   OrderStepper,
 } from "Apps/Order/Components/OrderStepper"
 import { ShippingSummaryItemFragmentContainer as ShippingSummaryItem } from "Apps/Order/Components/ShippingSummaryItem"
+import { StickyFooter } from "Apps/Order/Components/StickyFooter"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { TwoColumnLayout } from "Apps/Order/Components/TwoColumnLayout"
 import { Dialog, injectDialog } from "Apps/Order/Dialogs"
@@ -229,6 +230,7 @@ export class CounterRoute extends Component<CounterProps, CounterState> {
             }
           />
         </HorizontalPadding>
+        <StickyFooter artworkId={artwork.id} />
       </>
     )
   }

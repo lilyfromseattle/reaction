@@ -5,6 +5,7 @@ import { HorizontalPadding } from "Apps/Components/HorizontalPadding"
 import { ArtworkSummaryItemFragmentContainer as ArtworkSummaryItem } from "Apps/Order/Components/ArtworkSummaryItem"
 import { Helper } from "Apps/Order/Components/Helper"
 import { OfferInput } from "Apps/Order/Components/OfferInput"
+import { StickyFooter } from "Apps/Order/Components/StickyFooter"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { TwoColumnLayout } from "Apps/Order/Components/TwoColumnLayout"
 import { Dialog, injectDialog } from "Apps/Order/Dialogs"
@@ -301,6 +302,7 @@ export class OfferRoute extends Component<OfferProps, OfferState> {
             }
           />
         </HorizontalPadding>
+        <StickyFooter artworkId={artwork.id} />
       </>
     )
   }

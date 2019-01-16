@@ -12,6 +12,7 @@ import {
   OrderStepper,
 } from "Apps/Order/Components/OrderStepper"
 import { ShippingSummaryItemFragmentContainer as ShippingSummaryItem } from "Apps/Order/Components/ShippingSummaryItem"
+import { StickyFooter } from "Apps/Order/Components/StickyFooter"
 import { TransactionDetailsSummaryItemFragmentContainer as TransactionDetailsSummaryItem } from "Apps/Order/Components/TransactionDetailsSummaryItem"
 import { Dialog, injectDialog } from "Apps/Order/Dialogs"
 import { trackPageViewWrapper } from "Apps/Order/Utils/trackPageViewWrapper"
@@ -259,6 +260,10 @@ export class ReviewRoute extends Component<ReviewProps, ReviewState> {
   render() {
     const { order } = this.props
     const { isSubmitting } = this.state
+    const artwork = get(
+      this.props,
+      props => order.lineItems.edges[0].node.artwork
+    )
 
     return (
       <>
@@ -349,6 +354,7 @@ export class ReviewRoute extends Component<ReviewProps, ReviewState> {
             }
           />
         </HorizontalPadding>
+        <StickyFooter artworkId={artwork.id} />
       </>
     )
   }

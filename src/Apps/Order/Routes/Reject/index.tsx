@@ -22,7 +22,7 @@ import {
   counterofferFlowSteps,
   OrderStepper,
 } from "Apps/Order/Components/OrderStepper"
-
+import { StickyFooter } from "Apps/Order/Components/StickyFooter"
 import { Dialog, injectDialog } from "Apps/Order/Dialogs"
 import {
   commitMutation,
@@ -211,6 +211,7 @@ export class Reject extends Component<RejectProps, RejectState> {
             }
           />
         </HorizontalPadding>
+        <StickyFooter artworkId={artwork.id} />
       </>
     )
   }
