@@ -14,15 +14,17 @@ import {
 jest.unmock("react-relay")
 
 const orderMutation = graphql`
-  mutation createTestEnvOrderMutation($input: CreateOrderWithArtworkInput!) {
-    createOrderWithArtwork(input: $input) {
+  mutation createTestEnvOrderMutation(
+    $input: CommerceCreateOrderWithArtworkInput!
+  ) {
+    commerceCreateOrderWithArtwork(input: $input) {
       orderOrError {
-        ... on OrderWithMutationSuccess {
+        ... on CommerceOrderWithMutationSuccess {
           order {
             id
           }
         }
-        ... on OrderWithMutationFailure {
+        ... on CommerceOrderWithMutationFailure {
           error {
             type
           }
@@ -33,9 +35,9 @@ const orderMutation = graphql`
 `
 
 const orderSuccess = {
-  createOrderWithArtwork: {
+  commerceCreateOrderWithArtwork: {
     orderOrError: {
-      __typename: "OrderWithMutationSuccess",
+      __typename: "CommerceOrderWithMutationSuccess",
       order: {
         __typename: "BuyOrder",
         id: "order-id",
@@ -45,9 +47,9 @@ const orderSuccess = {
 }
 
 const orderFailure = {
-  createOrderWithArtwork: {
+  commerceCreateOrderWithArtwork: {
     orderOrError: {
-      __typename: "OrderWithMutationFailure",
+      __typename: "CommerceOrderWithMutationFailure",
       error: {
         type: "order-error",
       },

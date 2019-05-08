@@ -79,9 +79,9 @@ export const ArtworkSummaryItemFragmentContainer = createFragmentContainer(
   ArtworkSummaryItem,
   {
     order: graphql`
-      fragment ArtworkSummaryItem_order on Order {
+      fragment ArtworkSummaryItem_order on CommerceOrder {
         seller {
-          ... on Partner {
+          ... on CommercePartner {
             name
           }
         }

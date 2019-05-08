@@ -108,16 +108,16 @@ export class ShippingRoute extends Component<ShippingProps, ShippingState> {
         mutation ShippingOrderAddressUpdateMutation(
           $input: SetOrderShippingInput!
         ) {
-          ecommerceSetOrderShipping(input: $input) {
+          commerceSetOrderShipping(input: $input) {
             orderOrError {
-              ... on OrderWithMutationSuccess {
+              ... on CommerceOrderWithMutationSuccess {
                 __typename
                 order {
                   id
                   state
                   requestedFulfillment {
                     __typename
-                    ... on Ship {
+                    ... on CommerceShip {
                       name
                       addressLine1
                       addressLine2
@@ -130,7 +130,7 @@ export class ShippingRoute extends Component<ShippingProps, ShippingState> {
                   }
                 }
               }
-              ... on OrderWithMutationFailure {
+              ... on CommerceOrderWithMutationFailure {
                 error {
                   type
                   code
@@ -165,7 +165,7 @@ export class ShippingRoute extends Component<ShippingProps, ShippingState> {
           fulfillmentType: shippingOption,
           shipping: address,
         },
-      })).ecommerceSetOrderShipping.orderOrError
+      })).commerceSetOrderShipping.orderOrError
 
       if (orderOrError.error) {
         this.handleSubmitError(orderOrError.error)
@@ -381,13 +381,13 @@ export const ShippingFragmentContainer = createFragmentContainer(
   trackPageViewWrapper(injectCommitMutation(injectDialog(ShippingRoute))),
   {
     order: graphql`
-      fragment Shipping_order on Order {
+      fragment Shipping_order on CommerceOrder {
         id
         mode
         state
         requestedFulfillment {
           __typename
-          ... on Ship {
+          ... on CommerceShip {
             name
             addressLine1
             addressLine2

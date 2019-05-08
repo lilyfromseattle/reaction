@@ -1,7 +1,7 @@
 import { BuyOrderWithShippingDetails } from "Apps/__tests__/Fixtures/Order"
 
 export const submitOrderWithFailure = {
-  ecommerceSubmitOrder: {
+  commerceSubmitOrder: {
     orderOrError: {
       error: {
         type: "validation",
@@ -13,9 +13,9 @@ export const submitOrderWithFailure = {
 }
 
 export const submitOrderWithFailureCardDeclined = {
-  ecommerceSubmitOrder: {
+  commerceSubmitOrder: {
     orderOrError: {
-      __typename: "OrderWithMutationFailure",
+      __typename: "CommerceOrderWithMutationFailure",
       error: {
         type: "processing",
         code: "charge_authorization_failed",
@@ -27,9 +27,9 @@ export const submitOrderWithFailureCardDeclined = {
 }
 
 export const submitOrderWithFailureInsufficientFunds = {
-  ecommerceSubmitOrder: {
+  commerceSubmitOrder: {
     orderOrError: {
-      __typename: "OrderWithMutationFailure",
+      __typename: "CommerceOrderWithMutationFailure",
       error: {
         type: "processing",
         code: "charge_authorization_failed",
@@ -41,7 +41,7 @@ export const submitOrderWithFailureInsufficientFunds = {
 }
 
 export const submitOrderWithVersionMismatchFailure = {
-  ecommerceSubmitOrder: {
+  commerceSubmitOrder: {
     orderOrError: {
       error: {
         type: "processing",
@@ -53,7 +53,7 @@ export const submitOrderWithVersionMismatchFailure = {
 }
 
 export const submitOrderWithNoInventoryFailure = {
-  ecommerceSubmitOrder: {
+  commerceSubmitOrder: {
     orderOrError: {
       error: {
         type: "processing",
@@ -65,7 +65,7 @@ export const submitOrderWithNoInventoryFailure = {
 }
 
 export const submitOrderSuccess = {
-  ecommerceSubmitOrder: {
+  commerceSubmitOrder: {
     orderOrError: {
       order: {
         ...BuyOrderWithShippingDetails,
@@ -76,7 +76,7 @@ export const submitOrderSuccess = {
 }
 
 export const submitOrderWithMissingInfo = {
-  ecommerceSubmitOrder: {
+  commerceSubmitOrder: {
     orderOrError: {
       error: {
         type: "processing",

@@ -47,7 +47,7 @@ describe("Review", () => {
     },
     query: graphql`
       query ReviewTestQuery {
-        order: ecommerceOrder(id: "unused") {
+        order: commerceOrder(id: "unused") {
           ...Review_order
         }
       }

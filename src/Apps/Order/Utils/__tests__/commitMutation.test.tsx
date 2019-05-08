@@ -71,9 +71,9 @@ describe(injectCommitMutation, () => {
                     mutation commitMutationTest1Mutation(
                       $input: SetOrderPaymentInput!
                     ) {
-                      ecommerceSetOrderPayment(input: $input) {
+                      commerceSetOrderPayment(input: $input) {
                         orderOrError {
-                          ... on OrderWithMutationFailure {
+                          ... on CommerceOrderWithMutationFailure {
                             error {
                               code
                             }
@@ -106,7 +106,7 @@ describe(injectCommitMutation, () => {
     wrapper.update()
     expect(wrapper.find("div").props().className).toBe("nothing")
     expect(resultFn).toHaveBeenCalledWith({
-      ecommerceSetOrderPayment: {
+      commerceSetOrderPayment: {
         orderOrError: { error: { code: "invalid_state" } },
       },
     })

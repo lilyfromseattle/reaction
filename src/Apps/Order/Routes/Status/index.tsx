@@ -312,7 +312,7 @@ export const StatusFragmentContainer = createFragmentContainer(
   trackPageViewWrapper(StatusRoute),
   {
     order: graphql`
-      fragment Status_order on Order {
+      fragment Status_order on CommerceOrder {
         __typename
         id
         code
@@ -320,10 +320,10 @@ export const StatusFragmentContainer = createFragmentContainer(
         mode
         stateReason
         requestedFulfillment {
-          ... on Ship {
+          ... on CommerceShip {
             __typename
           }
-          ... on Pickup {
+          ... on CommercePickup {
             __typename
           }
         }
@@ -351,7 +351,7 @@ export const StatusFragmentContainer = createFragmentContainer(
             }
           }
         }
-        ... on OfferOrder {
+        ... on CommerceOfferOrder {
           myLastOffer {
             id
             amount(precision: 2)
