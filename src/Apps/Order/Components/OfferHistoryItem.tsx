@@ -96,7 +96,7 @@ export const OfferHistoryItemFragmentContainer = createFragmentContainer(
               node {
                 id
                 amount(precision: 2)
-                createdAt(format: "MMM D")
+                _createdAt(format: "MMM D")
                 fromParticipant
               }
             }

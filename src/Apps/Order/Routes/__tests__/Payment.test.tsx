@@ -119,7 +119,7 @@ describe("Payment", () => {
     expect(routes.mockPushRoute).toHaveBeenCalledWith("/orders/1234/review")
   })
 
-  it("shows an error modal when there is an error in SetOrderPaymentPayload", async () => {
+  it("shows an error modal when there is an error in SetPaymentPayload", async () => {
     const page = await buildPage()
     mutations.useResultsOnce(settingOrderPaymentFailed)
     await page.clickSubmit()

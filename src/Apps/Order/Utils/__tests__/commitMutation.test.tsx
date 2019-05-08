@@ -69,9 +69,9 @@ describe(injectCommitMutation, () => {
                   },
                   mutation: graphql`
                     mutation commitMutationTest1Mutation(
-                      $input: SetOrderPaymentInput!
+                      $input: CommerceSetPaymentInput!
                     ) {
-                      commerceSetOrderPayment(input: $input) {
+                      commerceSetPayment(input: $input) {
                         orderOrError {
                           ... on CommerceOrderWithMutationFailure {
                             error {
@@ -106,7 +106,7 @@ describe(injectCommitMutation, () => {
     wrapper.update()
     expect(wrapper.find("div").props().className).toBe("nothing")
     expect(resultFn).toHaveBeenCalledWith({
-      commerceSetOrderPayment: {
+      commerceSetPayment: {
         orderOrError: { error: { code: "invalid_state" } },
       },
     })

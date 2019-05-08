@@ -1,6 +1,6 @@
 import { Payment_me } from "__generated__/Payment_me.graphql"
 import { Payment_order } from "__generated__/Payment_order.graphql"
-import { PaymentRouteSetOrderPaymentMutation } from "__generated__/PaymentRouteSetOrderPaymentMutation.graphql"
+import { PaymentRouteSetPaymentMutation } from "__generated__/PaymentRouteSetPaymentMutation.graphql"
 
 import { HorizontalPadding } from "Apps/Components/HorizontalPadding"
 import { ArtworkSummaryItemFragmentContainer as ArtworkSummaryItem } from "Apps/Order/Components/ArtworkSummaryItem"
@@ -76,7 +76,7 @@ export class PaymentRoute extends Component<PaymentProps, PaymentState> {
           creditCardId: result.creditCardId,
           orderId: this.props.order.id,
         },
-      })).commerceSetOrderPayment.orderOrError
+      })).commerceSetPayment.orderOrError
 
       if (orderOrError.error) {
         throw orderOrError.error
@@ -155,14 +155,14 @@ export class PaymentRoute extends Component<PaymentProps, PaymentState> {
       </>
     )
   }
-  setOrderPayment(variables: PaymentRouteSetOrderPaymentMutation["variables"]) {
-    return this.props.commitMutation<PaymentRouteSetOrderPaymentMutation>({
+  setOrderPayment(variables: PaymentRouteSetPaymentMutation["variables"]) {
+    return this.props.commitMutation<PaymentRouteSetPaymentMutation>({
       variables,
       mutation: graphql`
-        mutation PaymentRouteSetOrderPaymentMutation(
-          $input: SetOrderPaymentInput!
+        mutation PaymentRouteSetPaymentMutation(
+          $input: CommerceSetPaymentInput!
         ) {
-          commerceSetOrderPayment(input: $input) {
+          commerceSetPayment(input: $input) {
             orderOrError {
               ... on CommerceOrderWithMutationSuccess {
                 order {

@@ -339,7 +339,7 @@ export const StatusFragmentContainer = createFragmentContainer(
                   node {
                     courier
                     trackingId
-                    estimatedDelivery(format: "MMM Do, YYYY")
+                    _estimatedDelivery(format: "MMM Do, YYYY")
                   }
                 }
               }

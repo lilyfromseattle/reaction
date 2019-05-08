@@ -1,6 +1,6 @@
 import { NewPayment_me } from "__generated__/NewPayment_me.graphql"
 import { NewPayment_order } from "__generated__/NewPayment_order.graphql"
-import { NewPaymentRouteSetOrderPaymentMutation } from "__generated__/NewPaymentRouteSetOrderPaymentMutation.graphql"
+import { NewPaymentRouteSetPaymentMutation } from "__generated__/NewPaymentRouteSetPaymentMutation.graphql"
 import { HorizontalPadding } from "Apps/Components/HorizontalPadding"
 import { ArtworkSummaryItemFragmentContainer as ArtworkSummaryItem } from "Apps/Order/Components/ArtworkSummaryItem"
 import { OrderStepper } from "Apps/Order/Components/OrderStepper"
@@ -173,13 +173,11 @@ export class NewPaymentRoute extends Component<
     )
   }
 
-  fixFailedPayment(
-    variables: NewPaymentRouteSetOrderPaymentMutation["variables"]
-  ) {
-    return this.props.commitMutation<NewPaymentRouteSetOrderPaymentMutation>({
+  fixFailedPayment(variables: NewPaymentRouteSetPaymentMutation["variables"]) {
+    return this.props.commitMutation<NewPaymentRouteSetPaymentMutation>({
       variables,
       mutation: graphql`
-        mutation NewPaymentRouteSetOrderPaymentMutation(
+        mutation NewPaymentRouteSetPaymentMutation(
           $input: CommerceFixFailedPaymentInput!
         ) {
           commerceFixFailedPayment(input: $input) {

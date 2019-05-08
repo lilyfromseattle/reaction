@@ -1,5 +1,5 @@
 export const settingOrderPaymentSuccess = {
-  commerceSetOrderPayment: {
+  commerceSetPayment: {
     orderOrError: {
       order: {
         __typename: "BuyOrder",
@@ -20,7 +20,7 @@ export const settingOrderPaymentSuccess = {
 }
 
 export const settingOrderPaymentFailed = {
-  commerceSetOrderPayment: {
+  commerceSetPayment: {
     orderOrError: {
       error: {
         type: "validation",
