@@ -18,7 +18,7 @@ export type CreditCardSummaryItem_order = {
 const node: ConcreteFragment = {
   "kind": "Fragment",
   "name": "CreditCardSummaryItem_order",
-  "type": "Order",
+  "type": "CommerceOrder",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -77,5 +77,5 @@ const node: ConcreteFragment = {
     }
   ]
 };
-(node as any).hash = 'e1b7a3f9688dc19be197743ecbfe5a54';
+(node as any).hash = '281587f1020c8ac58c8d214993f3c581';
 export default node;

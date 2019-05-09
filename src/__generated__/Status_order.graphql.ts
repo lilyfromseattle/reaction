@@ -6,18 +6,19 @@ import { CreditCardSummaryItem_order$ref } from "./CreditCardSummaryItem_order.g
 import { ItemReview_artwork$ref } from "./ItemReview_artwork.graphql";
 import { ShippingSummaryItem_order$ref } from "./ShippingSummaryItem_order.graphql";
 import { TransactionDetailsSummaryItem_order$ref } from "./TransactionDetailsSummaryItem_order.graphql";
-export type OrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderStateEnum = "ABANDONED" | "APPROVED" | "CANCELED" | "FULFILLED" | "PENDING" | "REFUNDED" | "SUBMITTED" | "%future added value";
 declare const _Status_order$ref: unique symbol;
 export type Status_order$ref = typeof _Status_order$ref;
 export type Status_order = {
     readonly __typename: string;
-    readonly id: string | null;
-    readonly code: string | null;
-    readonly state: string | null;
-    readonly mode: OrderModeEnum | null;
+    readonly id: string;
+    readonly code: string;
+    readonly state: CommerceOrderStateEnum;
+    readonly mode: CommerceOrderModeEnum | null;
     readonly stateReason: string | null;
     readonly requestedFulfillment: ({
-        readonly __typename: "Ship";
+        readonly __typename: "CommerceShip";
     } | {
         /*This will never be '% other', but we need some
         value in case none of the concrete values match.*/
@@ -29,9 +30,9 @@ export type Status_order = {
                 readonly fulfillments: ({
                     readonly edges: ReadonlyArray<({
                         readonly node: ({
-                            readonly courier: string | null;
+                            readonly courier: string;
                             readonly trackingId: string | null;
-                            readonly estimatedDelivery: string | null;
+                            readonly _estimatedDelivery: string | null;
                         }) | null;
                     }) | null> | null;
                 }) | null;
@@ -44,9 +45,9 @@ export type Status_order = {
         }) | null> | null;
     }) | null;
     readonly myLastOffer?: ({
-        readonly id: string | null;
+        readonly id: string;
         readonly amount: string | null;
-        readonly amountCents: number | null;
+        readonly amountCents: number;
         readonly shippingTotal: string | null;
         readonly shippingTotalCents: number | null;
         readonly taxTotal: string | null;
@@ -94,7 +95,7 @@ v4 = [
 return {
   "kind": "Fragment",
   "name": "Status_order",
-  "type": "Order",
+  "type": "CommerceOrder",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -143,12 +144,12 @@ return {
       "selections": [
         {
           "kind": "InlineFragment",
-          "type": "Pickup",
+          "type": "CommercePickup",
           "selections": v1
         },
         {
           "kind": "InlineFragment",
-          "type": "Ship",
+          "type": "CommerceShip",
           "selections": v1
         }
       ]
@@ -175,7 +176,7 @@ return {
       "name": "lineItems",
       "storageKey": null,
       "args": null,
-      "concreteType": "OrderLineItemConnection",
+      "concreteType": "CommerceLineItemConnection",
       "plural": false,
       "selections": [
         {
@@ -184,7 +185,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "OrderLineItemEdge",
+          "concreteType": "CommerceLineItemEdge",
           "plural": true,
           "selections": [
             {
@@ -193,7 +194,7 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "OrderLineItem",
+              "concreteType": "CommerceLineItem",
               "plural": false,
               "selections": [
                 {
@@ -202,7 +203,7 @@ return {
                   "name": "fulfillments",
                   "storageKey": null,
                   "args": null,
-                  "concreteType": "OrderFulfillmentConnection",
+                  "concreteType": "CommerceFulfillmentConnection",
                   "plural": false,
                   "selections": [
                     {
@@ -211,7 +212,7 @@ return {
                       "name": "edges",
                       "storageKey": null,
                       "args": null,
-                      "concreteType": "OrderFulfillmentEdge",
+                      "concreteType": "CommerceFulfillmentEdge",
                       "plural": true,
                       "selections": [
                         {
@@ -220,7 +221,7 @@ return {
                           "name": "node",
                           "storageKey": null,
                           "args": null,
-                          "concreteType": "OrderFulfillment",
+                          "concreteType": "CommerceFulfillment",
                           "plural": false,
                           "selections": [
                             {
@@ -240,7 +241,7 @@ return {
                             {
                               "kind": "ScalarField",
                               "alias": null,
-                              "name": "estimatedDelivery",
+                              "name": "_estimatedDelivery",
                               "args": [
                                 {
                                   "kind": "Literal",
@@ -249,7 +250,7 @@ return {
                                   "type": "String"
                                 }
                               ],
-                              "storageKey": "estimatedDelivery(format:\"MMM Do, YYYY\")"
+                              "storageKey": "_estimatedDelivery(format:\"MMM Do, YYYY\")"
                             },
                             v3
                           ]
@@ -299,7 +300,7 @@ return {
     v3,
     {
       "kind": "InlineFragment",
-      "type": "OfferOrder",
+      "type": "CommerceOfferOrder",
       "selections": [
         {
           "kind": "LinkedField",
@@ -307,7 +308,7 @@ return {
           "name": "myLastOffer",
           "storageKey": null,
           "args": null,
-          "concreteType": "Offer",
+          "concreteType": "CommerceOffer",
           "plural": false,
           "selections": [
             v2,
@@ -361,5 +362,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '58dbee7c81be7b6c21b1f6ccd276295b';
+(node as any).hash = '041e9c214ae1abb1e891ef5d78d92295';
 export default node;

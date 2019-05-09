@@ -6,16 +6,17 @@ import { CreditCardSummaryItem_order$ref } from "./CreditCardSummaryItem_order.g
 import { OfferHistoryItem_order$ref } from "./OfferHistoryItem_order.graphql";
 import { ShippingSummaryItem_order$ref } from "./ShippingSummaryItem_order.graphql";
 import { TransactionDetailsSummaryItem_order$ref } from "./TransactionDetailsSummaryItem_order.graphql";
-export type OrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderStateEnum = "ABANDONED" | "APPROVED" | "CANCELED" | "FULFILLED" | "PENDING" | "REFUNDED" | "SUBMITTED" | "%future added value";
 declare const _Counter_order$ref: unique symbol;
 export type Counter_order$ref = typeof _Counter_order$ref;
 export type Counter_order = {
-    readonly id: string | null;
-    readonly mode: OrderModeEnum | null;
-    readonly state: string | null;
+    readonly id: string;
+    readonly mode: CommerceOrderModeEnum | null;
+    readonly state: CommerceOrderStateEnum;
     readonly itemsTotal: string | null;
     readonly totalListPrice: string | null;
-    readonly stateExpiresAt: string | null;
+    readonly stateExpiresAt: any | null;
     readonly lineItems: ({
         readonly edges: ReadonlyArray<({
             readonly node: ({
@@ -26,10 +27,10 @@ export type Counter_order = {
         }) | null> | null;
     }) | null;
     readonly lastOffer?: ({
-        readonly createdAt: string | null;
+        readonly createdAt: any;
     }) | null;
     readonly myLastOffer?: ({
-        readonly id: string | null;
+        readonly id: string;
     }) | null;
     readonly " $fragmentRefs": TransactionDetailsSummaryItem_order$ref & ArtworkSummaryItem_order$ref & ShippingSummaryItem_order$ref & CreditCardSummaryItem_order$ref & OfferHistoryItem_order$ref;
     readonly " $refType": Counter_order$ref;
@@ -63,7 +64,7 @@ v2 = [
 return {
   "kind": "Fragment",
   "name": "Counter_order",
-  "type": "Order",
+  "type": "CommerceOrder",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -73,7 +74,7 @@ return {
       "name": "lineItems",
       "storageKey": null,
       "args": null,
-      "concreteType": "OrderLineItemConnection",
+      "concreteType": "CommerceLineItemConnection",
       "plural": false,
       "selections": [
         {
@@ -82,7 +83,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "OrderLineItemEdge",
+          "concreteType": "CommerceLineItemEdge",
           "plural": true,
           "selections": [
             {
@@ -91,7 +92,7 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "OrderLineItem",
+              "concreteType": "CommerceLineItem",
               "plural": false,
               "selections": [
                 {
@@ -184,7 +185,7 @@ return {
     v1,
     {
       "kind": "InlineFragment",
-      "type": "OfferOrder",
+      "type": "CommerceOfferOrder",
       "selections": [
         {
           "kind": "LinkedField",
@@ -192,7 +193,7 @@ return {
           "name": "lastOffer",
           "storageKey": null,
           "args": null,
-          "concreteType": "Offer",
+          "concreteType": "CommerceOffer",
           "plural": false,
           "selections": [
             {
@@ -211,7 +212,7 @@ return {
           "name": "myLastOffer",
           "storageKey": null,
           "args": null,
-          "concreteType": "Offer",
+          "concreteType": "CommerceOffer",
           "plural": false,
           "selections": [
             v0,
@@ -223,5 +224,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '47b18edb5f1aee678efb095fd0d19ccc';
+(node as any).hash = 'b0b4179c6c4ffb147979de5456cb6563';
 export default node;

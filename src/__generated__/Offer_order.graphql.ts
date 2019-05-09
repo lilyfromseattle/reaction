@@ -3,15 +3,16 @@
 import { ConcreteFragment } from "relay-runtime";
 import { ArtworkSummaryItem_order$ref } from "./ArtworkSummaryItem_order.graphql";
 import { TransactionDetailsSummaryItem_order$ref } from "./TransactionDetailsSummaryItem_order.graphql";
-export type OrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderStateEnum = "ABANDONED" | "APPROVED" | "CANCELED" | "FULFILLED" | "PENDING" | "REFUNDED" | "SUBMITTED" | "%future added value";
 declare const _Offer_order$ref: unique symbol;
 export type Offer_order$ref = typeof _Offer_order$ref;
 export type Offer_order = {
-    readonly id: string | null;
-    readonly mode: OrderModeEnum | null;
-    readonly state: string | null;
+    readonly id: string;
+    readonly mode: CommerceOrderModeEnum | null;
+    readonly state: CommerceOrderStateEnum;
     readonly totalListPrice: string | null;
-    readonly totalListPriceCents: number | null;
+    readonly totalListPriceCents: number;
     readonly lineItems: ({
         readonly edges: ReadonlyArray<({
             readonly node: ({
@@ -45,7 +46,7 @@ v1 = {
 return {
   "kind": "Fragment",
   "name": "Offer_order",
-  "type": "Order",
+  "type": "CommerceOrder",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -91,7 +92,7 @@ return {
       "name": "lineItems",
       "storageKey": null,
       "args": null,
-      "concreteType": "OrderLineItemConnection",
+      "concreteType": "CommerceLineItemConnection",
       "plural": false,
       "selections": [
         {
@@ -100,7 +101,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "OrderLineItemEdge",
+          "concreteType": "CommerceLineItemEdge",
           "plural": true,
           "selections": [
             {
@@ -109,7 +110,7 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "OrderLineItem",
+              "concreteType": "CommerceLineItem",
               "plural": false,
               "selections": [
                 {
@@ -152,5 +153,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '6ee0e0c309dc3f09604fa6cf229cfbac';
+(node as any).hash = 'd9532c301018ee59f0c6da3e86fa82de';
 export default node;

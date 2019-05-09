@@ -1,20 +1,21 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type OrderParticipantEnum = "BUYER" | "SELLER" | "%future added value";
-export type FixFailedPaymentInput = {
-    readonly offerId: string;
-    readonly creditCardId: string;
+export type CommerceOrderParticipantEnum = "BUYER" | "SELLER" | "%future added value";
+export type CommerceOrderStateEnum = "ABANDONED" | "APPROVED" | "CANCELED" | "FULFILLED" | "PENDING" | "REFUNDED" | "SUBMITTED" | "%future added value";
+export type CommerceFixFailedPaymentInput = {
     readonly clientMutationId?: string | null;
+    readonly creditCardId: string;
+    readonly offerId: string;
 };
-export type NewPaymentRouteSetOrderPaymentMutationVariables = {
-    readonly input: FixFailedPaymentInput;
+export type NewPaymentRouteSetPaymentMutationVariables = {
+    readonly input: CommerceFixFailedPaymentInput;
 };
-export type NewPaymentRouteSetOrderPaymentMutationResponse = {
-    readonly ecommerceFixFailedPayment: ({
-        readonly orderOrError: ({
-            readonly order?: ({
-                readonly state: string | null;
+export type NewPaymentRouteSetPaymentMutationResponse = {
+    readonly commerceFixFailedPayment: ({
+        readonly orderOrError: {
+            readonly order?: {
+                readonly state: CommerceOrderStateEnum;
                 readonly creditCard: ({
                     readonly id: string;
                     readonly name: string | null;
@@ -25,31 +26,31 @@ export type NewPaymentRouteSetOrderPaymentMutationResponse = {
                     readonly country: string | null;
                     readonly postal_code: string | null;
                 }) | null;
-                readonly awaitingResponseFrom?: OrderParticipantEnum | null;
-            }) | null;
-            readonly error?: ({
+                readonly awaitingResponseFrom?: CommerceOrderParticipantEnum | null;
+            };
+            readonly error?: {
                 readonly type: string;
                 readonly code: string;
                 readonly data: string | null;
-            }) | null;
-        }) | null;
+            };
+        };
     }) | null;
 };
-export type NewPaymentRouteSetOrderPaymentMutation = {
-    readonly response: NewPaymentRouteSetOrderPaymentMutationResponse;
-    readonly variables: NewPaymentRouteSetOrderPaymentMutationVariables;
+export type NewPaymentRouteSetPaymentMutation = {
+    readonly response: NewPaymentRouteSetPaymentMutationResponse;
+    readonly variables: NewPaymentRouteSetPaymentMutationVariables;
 };
 
 
 
 /*
-mutation NewPaymentRouteSetOrderPaymentMutation(
-  $input: FixFailedPaymentInput!
+mutation NewPaymentRouteSetPaymentMutation(
+  $input: CommerceFixFailedPaymentInput!
 ) {
-  ecommerceFixFailedPayment(input: $input) {
+  commerceFixFailedPayment(input: $input) {
     orderOrError {
       __typename
-      ... on OrderWithMutationSuccess {
+      ... on CommerceOrderWithMutationSuccess {
         order {
           __typename
           state
@@ -64,13 +65,13 @@ mutation NewPaymentRouteSetOrderPaymentMutation(
             postal_code
             __id
           }
-          ... on OfferOrder {
+          ... on CommerceOfferOrder {
             awaitingResponseFrom
           }
           __id: id
         }
       }
-      ... on OrderWithMutationFailure {
+      ... on CommerceOrderWithMutationFailure {
         error {
           type
           code
@@ -87,7 +88,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "FixFailedPaymentInput!",
+    "type": "CommerceFixFailedPaymentInput!",
     "defaultValue": null
   }
 ],
@@ -96,12 +97,12 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "FixFailedPaymentInput!"
+    "type": "CommerceFixFailedPaymentInput!"
   }
 ],
 v2 = {
   "kind": "InlineFragment",
-  "type": "OrderWithMutationFailure",
+  "type": "CommerceOrderWithMutationFailure",
   "selections": [
     {
       "kind": "LinkedField",
@@ -109,7 +110,7 @@ v2 = {
       "name": "error",
       "storageKey": null,
       "args": null,
-      "concreteType": "EcommerceError",
+      "concreteType": "CommerceApplicationError",
       "plural": false,
       "selections": [
         {
@@ -221,7 +222,7 @@ v5 = {
 },
 v6 = {
   "kind": "InlineFragment",
-  "type": "OfferOrder",
+  "type": "CommerceOfferOrder",
   "selections": [
     {
       "kind": "ScalarField",
@@ -242,13 +243,13 @@ v7 = {
 return {
   "kind": "Request",
   "operationKind": "mutation",
-  "name": "NewPaymentRouteSetOrderPaymentMutation",
+  "name": "NewPaymentRouteSetPaymentMutation",
   "id": null,
-  "text": "mutation NewPaymentRouteSetOrderPaymentMutation(\n  $input: FixFailedPaymentInput!\n) {\n  ecommerceFixFailedPayment(input: $input) {\n    orderOrError {\n      __typename\n      ... on OrderWithMutationSuccess {\n        order {\n          __typename\n          state\n          creditCard {\n            id\n            name\n            street1\n            street2\n            city\n            state\n            country\n            postal_code\n            __id\n          }\n          ... on OfferOrder {\n            awaitingResponseFrom\n          }\n          __id: id\n        }\n      }\n      ... on OrderWithMutationFailure {\n        error {\n          type\n          code\n          data\n        }\n      }\n    }\n  }\n}\n",
+  "text": "mutation NewPaymentRouteSetPaymentMutation(\n  $input: CommerceFixFailedPaymentInput!\n) {\n  commerceFixFailedPayment(input: $input) {\n    orderOrError {\n      __typename\n      ... on CommerceOrderWithMutationSuccess {\n        order {\n          __typename\n          state\n          creditCard {\n            id\n            name\n            street1\n            street2\n            city\n            state\n            country\n            postal_code\n            __id\n          }\n          ... on CommerceOfferOrder {\n            awaitingResponseFrom\n          }\n          __id: id\n        }\n      }\n      ... on CommerceOrderWithMutationFailure {\n        error {\n          type\n          code\n          data\n        }\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "NewPaymentRouteSetOrderPaymentMutation",
+    "name": "NewPaymentRouteSetPaymentMutation",
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -256,10 +257,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "ecommerceFixFailedPayment",
+        "name": "commerceFixFailedPayment",
         "storageKey": null,
         "args": v1,
-        "concreteType": "FixFailedPaymentPayload",
+        "concreteType": "CommerceFixFailedPaymentPayload",
         "plural": false,
         "selections": [
           {
@@ -274,7 +275,7 @@ return {
               v2,
               {
                 "kind": "InlineFragment",
-                "type": "OrderWithMutationSuccess",
+                "type": "CommerceOrderWithMutationSuccess",
                 "selections": [
                   {
                     "kind": "LinkedField",
@@ -301,16 +302,16 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "NewPaymentRouteSetOrderPaymentMutation",
+    "name": "NewPaymentRouteSetPaymentMutation",
     "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "ecommerceFixFailedPayment",
+        "name": "commerceFixFailedPayment",
         "storageKey": null,
         "args": v1,
-        "concreteType": "FixFailedPaymentPayload",
+        "concreteType": "CommerceFixFailedPaymentPayload",
         "plural": false,
         "selections": [
           {
@@ -326,7 +327,7 @@ return {
               v2,
               {
                 "kind": "InlineFragment",
-                "type": "OrderWithMutationSuccess",
+                "type": "CommerceOrderWithMutationSuccess",
                 "selections": [
                   {
                     "kind": "LinkedField",
@@ -354,5 +355,5 @@ return {
   }
 };
 })();
-(node as any).hash = '179cb4dd45718b90db8d8eab2626bb80';
+(node as any).hash = 'ba3779145d61439a67599833d6474e74';
 export default node;

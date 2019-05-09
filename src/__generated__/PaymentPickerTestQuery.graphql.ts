@@ -25,7 +25,7 @@ query PaymentPickerTestQuery {
     ...PaymentPicker_me
     __id
   }
-  order: ecommerceOrder(id: "unused") {
+  order: commerceOrder(id: "unused") {
     __typename
     ...PaymentPicker_order
     __id: id
@@ -48,7 +48,7 @@ fragment PaymentPicker_me on Me {
   __id
 }
 
-fragment PaymentPicker_order on Order {
+fragment PaymentPicker_order on CommerceOrder {
   id
   mode
   state
@@ -65,7 +65,7 @@ fragment PaymentPicker_order on Order {
   }
   requestedFulfillment {
     __typename
-    ... on Ship {
+    ... on CommerceShip {
       name
       addressLine1
       addressLine2
@@ -74,7 +74,7 @@ fragment PaymentPicker_order on Order {
       country
       postalCode
     }
-    ... on Pickup {
+    ... on CommercePickup {
       fulfillmentType
     }
   }
@@ -106,7 +106,7 @@ v1 = [
     "kind": "Literal",
     "name": "id",
     "value": "unused",
-    "type": "String!"
+    "type": "ID"
   }
 ],
 v2 = {
@@ -163,7 +163,7 @@ return {
   "operationKind": "query",
   "name": "PaymentPickerTestQuery",
   "id": null,
-  "text": "query PaymentPickerTestQuery {\n  me {\n    ...PaymentPicker_me\n    __id\n  }\n  order: ecommerceOrder(id: \"unused\") {\n    __typename\n    ...PaymentPicker_order\n    __id: id\n  }\n}\n\nfragment PaymentPicker_me on Me {\n  creditCards(first: 100) {\n    edges {\n      node {\n        id\n        brand\n        last_digits\n        expiration_month\n        expiration_year\n        __id\n      }\n    }\n  }\n  __id\n}\n\nfragment PaymentPicker_order on Order {\n  id\n  mode\n  state\n  creditCard {\n    id\n    name\n    street1\n    street2\n    city\n    state\n    country\n    postal_code\n    __id\n  }\n  requestedFulfillment {\n    __typename\n    ... on Ship {\n      name\n      addressLine1\n      addressLine2\n      city\n      region\n      country\n      postalCode\n    }\n    ... on Pickup {\n      fulfillmentType\n    }\n  }\n  lineItems {\n    edges {\n      node {\n        artwork {\n          id\n          __id\n        }\n        __id: id\n      }\n    }\n  }\n  __id: id\n}\n",
+  "text": "query PaymentPickerTestQuery {\n  me {\n    ...PaymentPicker_me\n    __id\n  }\n  order: commerceOrder(id: \"unused\") {\n    __typename\n    ...PaymentPicker_order\n    __id: id\n  }\n}\n\nfragment PaymentPicker_me on Me {\n  creditCards(first: 100) {\n    edges {\n      node {\n        id\n        brand\n        last_digits\n        expiration_month\n        expiration_year\n        __id\n      }\n    }\n  }\n  __id\n}\n\nfragment PaymentPicker_order on CommerceOrder {\n  id\n  mode\n  state\n  creditCard {\n    id\n    name\n    street1\n    street2\n    city\n    state\n    country\n    postal_code\n    __id\n  }\n  requestedFulfillment {\n    __typename\n    ... on CommerceShip {\n      name\n      addressLine1\n      addressLine2\n      city\n      region\n      country\n      postalCode\n    }\n    ... on CommercePickup {\n      fulfillmentType\n    }\n  }\n  lineItems {\n    edges {\n      node {\n        artwork {\n          id\n          __id\n        }\n        __id: id\n      }\n    }\n  }\n  __id: id\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -192,8 +192,8 @@ return {
       {
         "kind": "LinkedField",
         "alias": "order",
-        "name": "ecommerceOrder",
-        "storageKey": "ecommerceOrder(id:\"unused\")",
+        "name": "commerceOrder",
+        "storageKey": "commerceOrder(id:\"unused\")",
         "args": v1,
         "concreteType": null,
         "plural": false,
@@ -298,8 +298,8 @@ return {
       {
         "kind": "LinkedField",
         "alias": "order",
-        "name": "ecommerceOrder",
-        "storageKey": "ecommerceOrder(id:\"unused\")",
+        "name": "commerceOrder",
+        "storageKey": "commerceOrder(id:\"unused\")",
         "args": v1,
         "concreteType": null,
         "plural": false,
@@ -364,7 +364,7 @@ return {
               v4,
               {
                 "kind": "InlineFragment",
-                "type": "Pickup",
+                "type": "CommercePickup",
                 "selections": [
                   {
                     "kind": "ScalarField",
@@ -377,7 +377,7 @@ return {
               },
               {
                 "kind": "InlineFragment",
-                "type": "Ship",
+                "type": "CommerceShip",
                 "selections": [
                   v6,
                   {
@@ -420,7 +420,7 @@ return {
             "name": "lineItems",
             "storageKey": null,
             "args": null,
-            "concreteType": "OrderLineItemConnection",
+            "concreteType": "CommerceLineItemConnection",
             "plural": false,
             "selections": [
               {
@@ -429,7 +429,7 @@ return {
                 "name": "edges",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "OrderLineItemEdge",
+                "concreteType": "CommerceLineItemEdge",
                 "plural": true,
                 "selections": [
                   {
@@ -438,7 +438,7 @@ return {
                     "name": "node",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "OrderLineItem",
+                    "concreteType": "CommerceLineItem",
                     "plural": false,
                     "selections": [
                       {
@@ -468,5 +468,5 @@ return {
   }
 };
 })();
-(node as any).hash = '51b7074e851ceadc1bef378c0aa9e887';
+(node as any).hash = 'f92727269c24c714d67ce2000708a132';
 export default node;

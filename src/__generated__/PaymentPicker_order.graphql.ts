@@ -1,13 +1,14 @@
 /* tslint:disable */
 
 import { ConcreteFragment } from "relay-runtime";
-export type OrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderStateEnum = "ABANDONED" | "APPROVED" | "CANCELED" | "FULFILLED" | "PENDING" | "REFUNDED" | "SUBMITTED" | "%future added value";
 declare const _PaymentPicker_order$ref: unique symbol;
 export type PaymentPicker_order$ref = typeof _PaymentPicker_order$ref;
 export type PaymentPicker_order = {
-    readonly id: string | null;
-    readonly mode: OrderModeEnum | null;
-    readonly state: string | null;
+    readonly id: string;
+    readonly mode: CommerceOrderModeEnum | null;
+    readonly state: CommerceOrderStateEnum;
     readonly creditCard: ({
         readonly id: string;
         readonly name: string | null;
@@ -19,17 +20,17 @@ export type PaymentPicker_order = {
         readonly postal_code: string | null;
     }) | null;
     readonly requestedFulfillment: ({
-        readonly __typename: "Ship";
+        readonly __typename: "CommerceShip";
         readonly name: string | null;
         readonly addressLine1: string | null;
         readonly addressLine2: string | null;
         readonly city: string | null;
         readonly region: string | null;
-        readonly country: string;
+        readonly country: string | null;
         readonly postalCode: string | null;
     } | {
-        readonly __typename: "Pickup";
-        readonly fulfillmentType: string | null;
+        readonly __typename: "CommercePickup";
+        readonly fulfillmentType: string;
     } | {
         /*This will never be '% other', but we need some
         value in case none of the concrete values match.*/
@@ -102,7 +103,7 @@ v6 = {
 return {
   "kind": "Fragment",
   "name": "PaymentPicker_order",
-  "type": "Order",
+  "type": "CommerceOrder",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -171,7 +172,7 @@ return {
         },
         {
           "kind": "InlineFragment",
-          "type": "Pickup",
+          "type": "CommercePickup",
           "selections": [
             {
               "kind": "ScalarField",
@@ -184,7 +185,7 @@ return {
         },
         {
           "kind": "InlineFragment",
-          "type": "Ship",
+          "type": "CommerceShip",
           "selections": [
             v2,
             {
@@ -227,7 +228,7 @@ return {
       "name": "lineItems",
       "storageKey": null,
       "args": null,
-      "concreteType": "OrderLineItemConnection",
+      "concreteType": "CommerceLineItemConnection",
       "plural": false,
       "selections": [
         {
@@ -236,7 +237,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "OrderLineItemEdge",
+          "concreteType": "CommerceLineItemEdge",
           "plural": true,
           "selections": [
             {
@@ -245,7 +246,7 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "OrderLineItem",
+              "concreteType": "CommerceLineItem",
               "plural": false,
               "selections": [
                 {
@@ -272,5 +273,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '74f6fa2b42dd79d0531ce86ce888e960';
+(node as any).hash = '68781c4a4331371f2a7d97d19818c502';
 export default node;

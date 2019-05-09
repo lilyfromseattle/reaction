@@ -5,8 +5,8 @@ import { ArtworkSummaryItem_order$ref } from "./ArtworkSummaryItem_order.graphql
 declare const _Reject_order$ref: unique symbol;
 export type Reject_order$ref = typeof _Reject_order$ref;
 export type Reject_order = {
-    readonly id: string | null;
-    readonly stateExpiresAt: string | null;
+    readonly id: string;
+    readonly stateExpiresAt: any | null;
     readonly lineItems: ({
         readonly edges: ReadonlyArray<({
             readonly node: ({
@@ -17,8 +17,8 @@ export type Reject_order = {
         }) | null> | null;
     }) | null;
     readonly lastOffer?: ({
-        readonly id: string | null;
-        readonly createdAt: string | null;
+        readonly id: string;
+        readonly createdAt: any;
     }) | null;
     readonly " $fragmentRefs": ArtworkSummaryItem_order$ref;
     readonly " $refType": Reject_order$ref;
@@ -44,7 +44,7 @@ v1 = {
 return {
   "kind": "Fragment",
   "name": "Reject_order",
-  "type": "Order",
+  "type": "CommerceOrder",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -62,7 +62,7 @@ return {
       "name": "lineItems",
       "storageKey": null,
       "args": null,
-      "concreteType": "OrderLineItemConnection",
+      "concreteType": "CommerceLineItemConnection",
       "plural": false,
       "selections": [
         {
@@ -71,7 +71,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "OrderLineItemEdge",
+          "concreteType": "CommerceLineItemEdge",
           "plural": true,
           "selections": [
             {
@@ -80,7 +80,7 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "OrderLineItem",
+              "concreteType": "CommerceLineItem",
               "plural": false,
               "selections": [
                 {
@@ -117,7 +117,7 @@ return {
     v1,
     {
       "kind": "InlineFragment",
-      "type": "OfferOrder",
+      "type": "CommerceOfferOrder",
       "selections": [
         {
           "kind": "LinkedField",
@@ -125,7 +125,7 @@ return {
           "name": "lastOffer",
           "storageKey": null,
           "args": null,
-          "concreteType": "Offer",
+          "concreteType": "CommerceOffer",
           "plural": false,
           "selections": [
             v0,
@@ -144,5 +144,5 @@ return {
   ]
 };
 })();
-(node as any).hash = 'c81ec264932208f4ba9b2f58e6aa399f';
+(node as any).hash = '3204ebb55e786cd9e746bfd799fbb708';
 export default node;

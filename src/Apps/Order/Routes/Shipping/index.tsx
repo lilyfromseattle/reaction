@@ -106,9 +106,9 @@ export class ShippingRoute extends Component<ShippingProps, ShippingState> {
       variables,
       mutation: graphql`
         mutation ShippingOrderAddressUpdateMutation(
-          $input: SetOrderShippingInput!
+          $input: CommerceSetShippingInput!
         ) {
-          commerceSetOrderShipping(input: $input) {
+          commerceSetShipping(input: $input) {
             orderOrError {
               ... on CommerceOrderWithMutationSuccess {
                 __typename

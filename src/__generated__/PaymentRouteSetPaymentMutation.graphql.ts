@@ -1,18 +1,18 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type SetOrderPaymentInput = {
-    readonly orderId: string;
-    readonly creditCardId: string;
+export type CommerceSetPaymentInput = {
     readonly clientMutationId?: string | null;
+    readonly creditCardId: string;
+    readonly id: string;
 };
-export type PaymentRouteSetOrderPaymentMutationVariables = {
-    readonly input: SetOrderPaymentInput;
+export type PaymentRouteSetPaymentMutationVariables = {
+    readonly input: CommerceSetPaymentInput;
 };
-export type PaymentRouteSetOrderPaymentMutationResponse = {
-    readonly ecommerceSetOrderPayment: ({
-        readonly orderOrError: ({
-            readonly order?: ({
+export type PaymentRouteSetPaymentMutationResponse = {
+    readonly commerceSetPayment: ({
+        readonly orderOrError: {
+            readonly order?: {
                 readonly creditCard: ({
                     readonly id: string;
                     readonly name: string | null;
@@ -23,30 +23,30 @@ export type PaymentRouteSetOrderPaymentMutationResponse = {
                     readonly country: string | null;
                     readonly postal_code: string | null;
                 }) | null;
-            }) | null;
-            readonly error?: ({
+            };
+            readonly error?: {
                 readonly type: string;
                 readonly code: string;
                 readonly data: string | null;
-            }) | null;
-        }) | null;
+            };
+        };
     }) | null;
 };
-export type PaymentRouteSetOrderPaymentMutation = {
-    readonly response: PaymentRouteSetOrderPaymentMutationResponse;
-    readonly variables: PaymentRouteSetOrderPaymentMutationVariables;
+export type PaymentRouteSetPaymentMutation = {
+    readonly response: PaymentRouteSetPaymentMutationResponse;
+    readonly variables: PaymentRouteSetPaymentMutationVariables;
 };
 
 
 
 /*
-mutation PaymentRouteSetOrderPaymentMutation(
-  $input: SetOrderPaymentInput!
+mutation PaymentRouteSetPaymentMutation(
+  $input: CommerceSetPaymentInput!
 ) {
-  ecommerceSetOrderPayment(input: $input) {
+  commerceSetPayment(input: $input) {
     orderOrError {
       __typename
-      ... on OrderWithMutationSuccess {
+      ... on CommerceOrderWithMutationSuccess {
         order {
           __typename
           creditCard {
@@ -63,7 +63,7 @@ mutation PaymentRouteSetOrderPaymentMutation(
           __id: id
         }
       }
-      ... on OrderWithMutationFailure {
+      ... on CommerceOrderWithMutationFailure {
         error {
           type
           code
@@ -80,7 +80,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "SetOrderPaymentInput!",
+    "type": "CommerceSetPaymentInput!",
     "defaultValue": null
   }
 ],
@@ -89,12 +89,12 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "SetOrderPaymentInput!"
+    "type": "CommerceSetPaymentInput!"
   }
 ],
 v2 = {
   "kind": "InlineFragment",
-  "type": "OrderWithMutationFailure",
+  "type": "CommerceOrderWithMutationFailure",
   "selections": [
     {
       "kind": "LinkedField",
@@ -102,7 +102,7 @@ v2 = {
       "name": "error",
       "storageKey": null,
       "args": null,
-      "concreteType": "EcommerceError",
+      "concreteType": "CommerceApplicationError",
       "plural": false,
       "selections": [
         {
@@ -221,13 +221,13 @@ v5 = {
 return {
   "kind": "Request",
   "operationKind": "mutation",
-  "name": "PaymentRouteSetOrderPaymentMutation",
+  "name": "PaymentRouteSetPaymentMutation",
   "id": null,
-  "text": "mutation PaymentRouteSetOrderPaymentMutation(\n  $input: SetOrderPaymentInput!\n) {\n  ecommerceSetOrderPayment(input: $input) {\n    orderOrError {\n      __typename\n      ... on OrderWithMutationSuccess {\n        order {\n          __typename\n          creditCard {\n            id\n            name\n            street1\n            street2\n            city\n            state\n            country\n            postal_code\n            __id\n          }\n          __id: id\n        }\n      }\n      ... on OrderWithMutationFailure {\n        error {\n          type\n          code\n          data\n        }\n      }\n    }\n  }\n}\n",
+  "text": "mutation PaymentRouteSetPaymentMutation(\n  $input: CommerceSetPaymentInput!\n) {\n  commerceSetPayment(input: $input) {\n    orderOrError {\n      __typename\n      ... on CommerceOrderWithMutationSuccess {\n        order {\n          __typename\n          creditCard {\n            id\n            name\n            street1\n            street2\n            city\n            state\n            country\n            postal_code\n            __id\n          }\n          __id: id\n        }\n      }\n      ... on CommerceOrderWithMutationFailure {\n        error {\n          type\n          code\n          data\n        }\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "PaymentRouteSetOrderPaymentMutation",
+    "name": "PaymentRouteSetPaymentMutation",
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -235,10 +235,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "ecommerceSetOrderPayment",
+        "name": "commerceSetPayment",
         "storageKey": null,
         "args": v1,
-        "concreteType": "SetOrderPaymentPayload",
+        "concreteType": "CommerceSetPaymentPayload",
         "plural": false,
         "selections": [
           {
@@ -253,7 +253,7 @@ return {
               v2,
               {
                 "kind": "InlineFragment",
-                "type": "OrderWithMutationSuccess",
+                "type": "CommerceOrderWithMutationSuccess",
                 "selections": [
                   {
                     "kind": "LinkedField",
@@ -278,16 +278,16 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "PaymentRouteSetOrderPaymentMutation",
+    "name": "PaymentRouteSetPaymentMutation",
     "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "ecommerceSetOrderPayment",
+        "name": "commerceSetPayment",
         "storageKey": null,
         "args": v1,
-        "concreteType": "SetOrderPaymentPayload",
+        "concreteType": "CommerceSetPaymentPayload",
         "plural": false,
         "selections": [
           {
@@ -303,7 +303,7 @@ return {
               v2,
               {
                 "kind": "InlineFragment",
-                "type": "OrderWithMutationSuccess",
+                "type": "CommerceOrderWithMutationSuccess",
                 "selections": [
                   {
                     "kind": "LinkedField",
@@ -329,5 +329,5 @@ return {
   }
 };
 })();
-(node as any).hash = '788e14cf29d4978ff12b9d07d8bce050';
+(node as any).hash = '1646a5ade479a59f8332e15e425bd20f';
 export default node;

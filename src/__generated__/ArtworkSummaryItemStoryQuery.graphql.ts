@@ -17,15 +17,15 @@ export type ArtworkSummaryItemStoryQuery = {
 
 /*
 query ArtworkSummaryItemStoryQuery {
-  order: ecommerceOrder(id: "foo") {
+  order: commerceOrder(id: "foo") {
     __typename
     ...ArtworkSummaryItem_order
     __id: id
   }
 }
 
-fragment ArtworkSummaryItem_order on Order {
-  seller {
+fragment ArtworkSummaryItem_order on CommerceOrder {
+  sellerDetails {
     __typename
     ... on Partner {
       name
@@ -66,7 +66,7 @@ var v0 = [
     "kind": "Literal",
     "name": "id",
     "value": "foo",
-    "type": "String!"
+    "type": "ID"
   }
 ],
 v1 = {
@@ -95,7 +95,7 @@ return {
   "operationKind": "query",
   "name": "ArtworkSummaryItemStoryQuery",
   "id": null,
-  "text": "query ArtworkSummaryItemStoryQuery {\n  order: ecommerceOrder(id: \"foo\") {\n    __typename\n    ...ArtworkSummaryItem_order\n    __id: id\n  }\n}\n\nfragment ArtworkSummaryItem_order on Order {\n  seller {\n    __typename\n    ... on Partner {\n      name\n    }\n    ... on Node {\n      __id\n    }\n    ... on User {\n      __id\n    }\n  }\n  lineItems {\n    edges {\n      node {\n        artwork {\n          artist_names\n          title\n          date\n          shippingOrigin\n          image {\n            resized_ArtworkSummaryItem: resized(width: 55) {\n              url\n            }\n          }\n          __id\n        }\n        __id: id\n      }\n    }\n  }\n  __id: id\n}\n",
+  "text": "query ArtworkSummaryItemStoryQuery {\n  order: commerceOrder(id: \"foo\") {\n    __typename\n    ...ArtworkSummaryItem_order\n    __id: id\n  }\n}\n\nfragment ArtworkSummaryItem_order on CommerceOrder {\n  sellerDetails {\n    __typename\n    ... on Partner {\n      name\n    }\n    ... on Node {\n      __id\n    }\n    ... on User {\n      __id\n    }\n  }\n  lineItems {\n    edges {\n      node {\n        artwork {\n          artist_names\n          title\n          date\n          shippingOrigin\n          image {\n            resized_ArtworkSummaryItem: resized(width: 55) {\n              url\n            }\n          }\n          __id\n        }\n        __id: id\n      }\n    }\n  }\n  __id: id\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -107,8 +107,8 @@ return {
       {
         "kind": "LinkedField",
         "alias": "order",
-        "name": "ecommerceOrder",
-        "storageKey": "ecommerceOrder(id:\"foo\")",
+        "name": "commerceOrder",
+        "storageKey": "commerceOrder(id:\"foo\")",
         "args": v0,
         "concreteType": null,
         "plural": false,
@@ -131,8 +131,8 @@ return {
       {
         "kind": "LinkedField",
         "alias": "order",
-        "name": "ecommerceOrder",
-        "storageKey": "ecommerceOrder(id:\"foo\")",
+        "name": "commerceOrder",
+        "storageKey": "commerceOrder(id:\"foo\")",
         "args": v0,
         "concreteType": null,
         "plural": false,
@@ -141,7 +141,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "seller",
+            "name": "sellerDetails",
             "storageKey": null,
             "args": null,
             "concreteType": null,
@@ -170,7 +170,7 @@ return {
             "name": "lineItems",
             "storageKey": null,
             "args": null,
-            "concreteType": "OrderLineItemConnection",
+            "concreteType": "CommerceLineItemConnection",
             "plural": false,
             "selections": [
               {
@@ -179,7 +179,7 @@ return {
                 "name": "edges",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "OrderLineItemEdge",
+                "concreteType": "CommerceLineItemEdge",
                 "plural": true,
                 "selections": [
                   {
@@ -188,7 +188,7 @@ return {
                     "name": "node",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "OrderLineItem",
+                    "concreteType": "CommerceLineItem",
                     "plural": false,
                     "selections": [
                       {
@@ -281,5 +281,5 @@ return {
   }
 };
 })();
-(node as any).hash = 'bfcfbadc3bfe111c7ea2809b35db6f29';
+(node as any).hash = 'e0867a7c2273dbcb65cb962b7bb65c9c';
 export default node;

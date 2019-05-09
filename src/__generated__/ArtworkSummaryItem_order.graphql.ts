@@ -4,7 +4,7 @@ import { ConcreteFragment } from "relay-runtime";
 declare const _ArtworkSummaryItem_order$ref: unique symbol;
 export type ArtworkSummaryItem_order$ref = typeof _ArtworkSummaryItem_order$ref;
 export type ArtworkSummaryItem_order = {
-    readonly seller: ({
+    readonly sellerDetails: ({
         readonly name?: string | null;
     }) | null;
     readonly lineItems: ({
@@ -47,14 +47,14 @@ v1 = {
 return {
   "kind": "Fragment",
   "name": "ArtworkSummaryItem_order",
-  "type": "Order",
+  "type": "CommerceOrder",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "seller",
+      "name": "sellerDetails",
       "storageKey": null,
       "args": null,
       "concreteType": null,
@@ -82,7 +82,7 @@ return {
       "name": "lineItems",
       "storageKey": null,
       "args": null,
-      "concreteType": "OrderLineItemConnection",
+      "concreteType": "CommerceLineItemConnection",
       "plural": false,
       "selections": [
         {
@@ -91,7 +91,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "OrderLineItemEdge",
+          "concreteType": "CommerceLineItemEdge",
           "plural": true,
           "selections": [
             {
@@ -100,7 +100,7 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "OrderLineItem",
+              "concreteType": "CommerceLineItem",
               "plural": false,
               "selections": [
                 {
@@ -190,5 +190,5 @@ return {
   ]
 };
 })();
-(node as any).hash = 'b65b9c01d65b8ef276a77155bed8c14c';
+(node as any).hash = '9365a78287c9fd680d1a724ad3c1fa49';
 export default node;

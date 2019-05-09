@@ -1,8 +1,9 @@
 /* tslint:disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type OrderModeEnum = "BUY" | "OFFER" | "%future added value";
-export type OrderParticipantEnum = "BUYER" | "SELLER" | "%future added value";
+export type CommerceOrderModeEnum = "BUY" | "OFFER" | "%future added value";
+export type CommerceOrderParticipantEnum = "BUYER" | "SELLER" | "%future added value";
+export type CommerceOrderStateEnum = "ABANDONED" | "APPROVED" | "CANCELED" | "FULFILLED" | "PENDING" | "REFUNDED" | "SUBMITTED" | "%future added value";
 export type routes_OrderQueryVariables = {
     readonly orderID: string;
 };
@@ -11,9 +12,9 @@ export type routes_OrderQueryResponse = {
         readonly name: string | null;
     }) | null;
     readonly order: ({
-        readonly id: string | null;
-        readonly mode: OrderModeEnum | null;
-        readonly state: string | null;
+        readonly id: string;
+        readonly mode: CommerceOrderModeEnum | null;
+        readonly state: CommerceOrderStateEnum;
         readonly lastTransactionFailed: boolean | null;
         readonly requestedFulfillment: ({
             readonly __typename: string;
@@ -31,14 +32,14 @@ export type routes_OrderQueryResponse = {
             readonly id: string;
         }) | null;
         readonly myLastOffer?: ({
-            readonly id: string | null;
-            readonly createdAt: string | null;
+            readonly id: string;
+            readonly createdAt: any;
         }) | null;
         readonly lastOffer?: ({
-            readonly id: string | null;
-            readonly createdAt: string | null;
+            readonly id: string;
+            readonly createdAt: any;
         }) | null;
-        readonly awaitingResponseFrom?: OrderParticipantEnum | null;
+        readonly awaitingResponseFrom?: CommerceOrderParticipantEnum | null;
     }) | null;
 };
 export type routes_OrderQuery = {
@@ -50,19 +51,19 @@ export type routes_OrderQuery = {
 
 /*
 query routes_OrderQuery(
-  $orderID: String!
+  $orderID: ID!
 ) {
   me {
     name
     __id
   }
-  order: ecommerceOrder(id: $orderID) {
+  order: commerceOrder(id: $orderID) {
     __typename
     id
     mode
     state
     lastTransactionFailed
-    ... on OfferOrder {
+    ... on CommerceOfferOrder {
       myLastOffer {
         id
         createdAt
@@ -103,7 +104,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "orderID",
-    "type": "String!",
+    "type": "ID!",
     "defaultValue": null
   }
 ],
@@ -138,7 +139,7 @@ v3 = [
     "kind": "Variable",
     "name": "id",
     "variableName": "orderID",
-    "type": "String!"
+    "type": "ID"
   }
 ],
 v4 = {
@@ -205,7 +206,7 @@ v12 = {
   "name": "lineItems",
   "storageKey": null,
   "args": null,
-  "concreteType": "OrderLineItemConnection",
+  "concreteType": "CommerceLineItemConnection",
   "plural": false,
   "selections": [
     {
@@ -214,7 +215,7 @@ v12 = {
       "name": "edges",
       "storageKey": null,
       "args": null,
-      "concreteType": "OrderLineItemEdge",
+      "concreteType": "CommerceLineItemEdge",
       "plural": true,
       "selections": [
         {
@@ -223,7 +224,7 @@ v12 = {
           "name": "node",
           "storageKey": null,
           "args": null,
-          "concreteType": "OrderLineItem",
+          "concreteType": "CommerceLineItem",
           "plural": false,
           "selections": [
             {
@@ -266,7 +267,7 @@ v14 = [
 ],
 v15 = {
   "kind": "InlineFragment",
-  "type": "OfferOrder",
+  "type": "CommerceOfferOrder",
   "selections": [
     {
       "kind": "LinkedField",
@@ -274,7 +275,7 @@ v15 = {
       "name": "myLastOffer",
       "storageKey": null,
       "args": null,
-      "concreteType": "Offer",
+      "concreteType": "CommerceOffer",
       "plural": false,
       "selections": v14
     },
@@ -284,7 +285,7 @@ v15 = {
       "name": "lastOffer",
       "storageKey": null,
       "args": null,
-      "concreteType": "Offer",
+      "concreteType": "CommerceOffer",
       "plural": false,
       "selections": v14
     },
@@ -302,7 +303,7 @@ return {
   "operationKind": "query",
   "name": "routes_OrderQuery",
   "id": null,
-  "text": "query routes_OrderQuery(\n  $orderID: String!\n) {\n  me {\n    name\n    __id\n  }\n  order: ecommerceOrder(id: $orderID) {\n    __typename\n    id\n    mode\n    state\n    lastTransactionFailed\n    ... on OfferOrder {\n      myLastOffer {\n        id\n        createdAt\n        __id: id\n      }\n      lastOffer {\n        id\n        createdAt\n        __id: id\n      }\n      awaitingResponseFrom\n    }\n    requestedFulfillment {\n      __typename\n    }\n    lineItems {\n      edges {\n        node {\n          artwork {\n            id\n            __id\n          }\n          __id: id\n        }\n      }\n    }\n    creditCard {\n      id\n      __id\n    }\n    __id: id\n  }\n}\n",
+  "text": "query routes_OrderQuery(\n  $orderID: ID!\n) {\n  me {\n    name\n    __id\n  }\n  order: commerceOrder(id: $orderID) {\n    __typename\n    id\n    mode\n    state\n    lastTransactionFailed\n    ... on CommerceOfferOrder {\n      myLastOffer {\n        id\n        createdAt\n        __id: id\n      }\n      lastOffer {\n        id\n        createdAt\n        __id: id\n      }\n      awaitingResponseFrom\n    }\n    requestedFulfillment {\n      __typename\n    }\n    lineItems {\n      edges {\n        node {\n          artwork {\n            id\n            __id\n          }\n          __id: id\n        }\n      }\n    }\n    creditCard {\n      id\n      __id\n    }\n    __id: id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -315,7 +316,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": "order",
-        "name": "ecommerceOrder",
+        "name": "commerceOrder",
         "storageKey": null,
         "args": v3,
         "concreteType": null,
@@ -343,7 +344,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": "order",
-        "name": "ecommerceOrder",
+        "name": "commerceOrder",
         "storageKey": null,
         "args": v3,
         "concreteType": null,
@@ -365,5 +366,5 @@ return {
   }
 };
 })();
-(node as any).hash = '20d17f420895276adefe97677567a77d';
+(node as any).hash = 'affb6306deddbc88542ea4b0a477d208';
 export default node;
