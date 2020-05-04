@@ -41,6 +41,26 @@ interface ReplyProps {
   environment: Environment
 }
 
+const setHeight = (event) => {
+  const field = event.target as HTMLTextAreaElement
+            field.style.height = "inherit"
+
+      // Get the computed styles for the element
+      const computed = window.getComputedStyle(field)
+
+      // Calculate the height
+      const height = field.scrollHeight
+      // parseInt(computed.getPropertyValue("border-top-width"), 10) +
+      // parseInt(computed.getPropertyValue("padding-top"), 10) +
+      // field.scrollHeight +
+      // parseInt(computed.getPropertyValue("padding-bottom"), 10) +
+      // parseInt(computed.getPropertyValue("border-bottom-width"), 10)
+
+      console.log("COMPUTED height", height)
+
+      field.style.height = height + "px"
+}
+
 export const Reply: React.FC<ReplyProps> = props => {
   const { environment, conversation } = props
   const [bodyText, setBodyText] = useState("")
@@ -60,30 +80,11 @@ export const Reply: React.FC<ReplyProps> = props => {
     <StyledFlex p={1}>
       <FullWidthFlex width="100%">
         <StyledTextArea
-          onInput={event => {
-            // Reset field height
-            const field = event.target as HTMLTextAreaElement
-            field.style.height = "inherit"
-
-            // Get the computed styles for the element
-            const computed = window.getComputedStyle(field)
-
-            // Calculate the height
-            const height = field.scrollHeight
-            // parseInt(computed.getPropertyValue("border-top-width"), 10) +
-            // parseInt(computed.getPropertyValue("padding-top"), 10) +
-            // field.scrollHeight +
-            // parseInt(computed.getPropertyValue("padding-bottom"), 10) +
-            // parseInt(computed.getPropertyValue("border-bottom-width"), 10)
-
-            console.log("COMPUTED height", height)
-
-            field.style.height = height + "px"
-          }}
+          onInput={event => {setHeight(event)}
           placeholder="Type your message"
           ref={textArea}
           onChange={event => {
-            // setBodyText(event.value)
+            setBodyText(event.value)
           }}
         />
       </FullWidthFlex>
